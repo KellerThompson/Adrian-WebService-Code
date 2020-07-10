@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Adrian-WebService:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/Adrian_WebService_war</output-path>
+    <root id="archive" name="Adrian-WebService_war.war">
+      <element id="artifact" artifact-name="Adrian-WebService:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/Libreria/mysql-connector-java-8.0.15.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/Libreria/jackson-module-jaxb-annotations-2.1.2.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
