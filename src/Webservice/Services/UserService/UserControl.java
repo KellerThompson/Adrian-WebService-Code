@@ -42,4 +42,11 @@ public class UserControl
         }
         return user;
     }
+
+    public static void setExamenState(String idUser, String examState)
+    {
+        Database.conectar();
+        Database.actualizarCampo(userTable, examenColumn, examState, userPrimaryKey, idUser);
+        Database.cerrarConexion();
+    }
 }

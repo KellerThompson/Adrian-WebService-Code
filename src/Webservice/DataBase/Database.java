@@ -84,13 +84,12 @@ public class Database
      * @param primaryKey : Nombre de la columna del PrimaryKey
      * @param psID : primarykey del registro a actualizar
      * @author Keller Thompson
-     * @throws SQLException
      */
-    public void actualizarCampo (String psTablas, String psColumnas, String psValores, String primaryKey, String psID) throws SQLException
+    public static void actualizarCampo (String psTablas, String psColumnas, String psValores, String primaryKey, String psID)
     {
         try
         {
-            sentenciaSQL.executeUpdate("UPDATE " + this.dataBaseName + "." + psTablas + " SET " + psColumnas + " = '" + psValores + "' WHERE (" + primaryKey + "= '" + psID + "')");
+            sentenciaSQL.executeUpdate("UPDATE " + dataBaseName + "." + psTablas + " SET " + psColumnas + " = '" + psValores + "' WHERE (" + primaryKey + "= '" + psID + "')");
         }
         catch(Exception ex)
         {
