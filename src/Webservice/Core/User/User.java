@@ -5,6 +5,7 @@ public class User
     public String username;
     public String password;
     public int idUser;
+    public int examen;
 
     public User()
     {
@@ -16,6 +17,7 @@ public class User
         this.username = username;
         this.password = password;
         this.idUser = -1;
+        this.examen = -1;
     }
 
     public boolean isValid()
@@ -26,12 +28,21 @@ public class User
             return false;
     }
 
+    public boolean examen()
+    {
+        if(examen > 0)
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "idUser='" + idUser + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", idUser='" + idUser + '\'' +
+                ", examen='" + examen + '\'' +
                 '}';
     }
 }

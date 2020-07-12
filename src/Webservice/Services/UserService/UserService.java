@@ -13,10 +13,11 @@ public class UserService
 {
     @GET
     @Path("{username}/{password}")
-    //@Produces(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public int getClichedMessage(@PathParam("username") String username, @PathParam("password") String password)
+    public String getClichedMessage(@PathParam("username") String username, @PathParam("password") String password)
     {
-        return UserControl.userAunthentication(username, password).idUser;
+        User user = UserControl.userAunthentication(username, password);
+        System.out.println(user);
+        return (user.idUser + "," + user.examen);
     }
 }

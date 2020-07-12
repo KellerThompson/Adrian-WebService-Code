@@ -11,7 +11,7 @@ public class Database
     private static Statement sentenciaSQL; //Objeto que almacena la sentencia que ejecuta la consulta
     private static ResultSet resultSet; //Objeto que guarda los resultados de la consulta
 
-    private static final String dataBaseName = "bfkbonwrvl7atwiehbto";
+    public static final String dataBaseName = "bfkbonwrvl7atwiehbto";
     private static final String url_db = "jdbc:mysql://usk3refbtwbe3fdm:ivccxIR52fMqzS8F6gsm@bfkbonwrvl7atwiehbto-mysql.services.clever-cloud.com:3306/bfkbonwrvl7atwiehbto?useSSL=false";
     private static final String user = "usk3refbtwbe3fdm";
     private static final String password = "ivccxIR52fMqzS8F6gsm";

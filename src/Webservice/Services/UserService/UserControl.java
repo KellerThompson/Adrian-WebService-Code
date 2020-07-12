@@ -10,24 +10,36 @@ public class UserControl
     private static final String userPrimaryKey = "idUser";
     private static final String usernameColumn = "username";
     private static final String passwordColumn = "password";
+    private static final String examenColumn = "examen";
 
     public static User userAunthentication(String username, String password)
     {
         User user = new User(username, password);
-        Database.conectar();
         if
         (
                 (user.username != null && user.password != null) &&
                 (!user.username.equals("") && !user.password.equals("")) &&
-                (UtilK.validString(user.username) && UtilK.validString(user.password)) &&
-                Database.existeEnColumna(userTable, usernameColumn, user.username) &&
-                user.password.equals(Database.getStringAt(passwordColumn, userTable, usernameColumn, user.username))
+                (UtilK.validString(user.username) && UtilK.validString(user.password))
         )
         {
-            user.idUser = Database.getIntegerAt(userPrimaryKey, userTable, usernameColumn, user.username);
+            Database.conectar();
+            Database.sentenciaQuery("SELECT * FROM "+Database.dataBaseName+"."+userTable+" where "+usernameColumn+" = '" + user.username +"';");
+            String[][] stringUser = Database.obtenerDatosTabla();
+            Database.cerrarConexion();
+
+            try
+            {
+                if(user.password.equals(stringUser[0][2]))
+                {
+                    user.idUser = Integer.parseInt(stringUser[0][0]);
+                    user.examen = Integer.parseInt(stringUser[0][3]);
+                }
+            }
+            catch (Exception ex)
+            {
+                user = new User(username, password);
+            }
         }
-        Database.cerrarConexion();
-        System.out.println(user.toString());
         return user;
     }
 }
