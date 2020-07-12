@@ -16,11 +16,4 @@ public class UserService
         User user = UserControl.userAunthentication(username, password);
         return (user.idUser + "," + user.examen);
     }
-
-    @POST
-    @Path("/exam/{idUser}/{examstate}")
-    public void setUserExameState(@PathParam("idUser") String idUser, @PathParam("examstate") String examState)
-    {
-        UserControl.setExamenState(idUser, examState);
-    }
 }
