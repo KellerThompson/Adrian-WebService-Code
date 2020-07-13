@@ -76,6 +76,18 @@ public class Database
         }
     }
 
+    public static void executeInsert(String sentencia)
+    {
+        try
+        {
+            sentenciaSQL.executeUpdate(sentencia);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * Metodo que actualiza un registro especifico.
      * @param psTablas : Nombre de la tabla
