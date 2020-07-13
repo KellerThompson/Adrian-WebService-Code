@@ -1,7 +1,6 @@
 package Webservice.Services.ResultService;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
 @Path("/Result")
 public class ResultService

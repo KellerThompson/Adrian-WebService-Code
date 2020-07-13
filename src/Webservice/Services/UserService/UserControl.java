@@ -4,6 +4,8 @@ import Webservice.DataBase.Database;
 import Webservice.Utileria.UtilK;
 import Webservice.Core.User.User;
 
+import static Webservice.DataBase.Database.dataBaseName;
+
 public class UserControl
 {
     private static final String userTable = "User";
@@ -23,7 +25,7 @@ public class UserControl
         )
         {
             Database.conectar();
-            Database.sentenciaQuery("SELECT * FROM "+Database.dataBaseName+"."+userTable+" where "+usernameColumn+" = '" + user.username +"';");
+            Database.sentenciaQuery("SELECT * FROM "+ dataBaseName +"."+userTable+" where "+usernameColumn+" = '" + user.username +"';");
             String[][] stringUser = Database.obtenerDatosTabla();
             Database.cerrarConexion();
 
