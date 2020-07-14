@@ -24,13 +24,13 @@ public class UserControl
                 (UtilK.validString(user.username) && UtilK.validString(user.password))
         )
         {
-            Database.conectar();
-            Database.sentenciaQuery(
+            Database db = new Database();
+            db.conectar();
+            db.sentenciaQuery(
                     "SELECT * FROM "+ dataBaseName +"."+userTable+" " +
                             "where "+usernameColumn+" = '" + user.username +"';");
-            String[][] stringUser = Database.obtenerDatosTabla();
-            Database.cerrarConexion();
-
+            String[][] stringUser = db.obtenerDatosTabla();
+            db.cerrarConexion();
             try
             {
                 if(user.password.equals(stringUser[0][2]))
@@ -49,21 +49,23 @@ public class UserControl
 
     public static void setExamenState(String idUser, String examState)
     {
-        Database.conectar();
-        Database.actualizarCampo(userTable, examenColumn, examState, userPrimaryKey, idUser);
-        Database.cerrarConexion();
+        Database db = new Database();
+        db.conectar();
+        db.actualizarCampo(userTable, examenColumn, examState, userPrimaryKey, idUser);
+        db.cerrarConexion();
     }
 
     public static void registerUser(String username, String password)
     {
-        Database.conectar();
-        if(!Database.existeEnColumna(userTable, usernameColumn, username))
+        Database db = new Database();
+        db.conectar();
+        if(!db.existeEnColumna(userTable, usernameColumn, username))
         {
-            Database.executeInsert(
+            db.executeInsert(
                     "insert into "+dataBaseName+"."+userTable+" " +
                             "("+usernameColumn+", "+passwordColumn+", "+examenColumn+") " +
                             "values ('"+username+"', '"+password+"', 0);");
         }
-        Database.cerrarConexion();
+        db.cerrarConexion();
     }
 }

@@ -11,16 +11,17 @@ public class ResultControl
 
     public static void registerResult(int idUser, String materia, String results)
     {
-        Database.conectar();
+        Database db = new Database();
+        db.conectar();
         if(results.split(",").length == 12)
         {
-            Database.executeInsert(createSentencia(materia, columnas12, idUser + "," + results));
+            db.executeInsert(createSentencia(materia, columnas12, idUser + "," + results));
         }
         else
         {
-            Database.executeInsert(createSentencia(materia, columnas16, idUser + "," + results));
+            db.executeInsert(createSentencia(materia, columnas16, idUser + "," + results));
         }
-        Database.cerrarConexion();
+        db.cerrarConexion();
     }
 
     private static String createSentencia(String materia, String columnas, String values)

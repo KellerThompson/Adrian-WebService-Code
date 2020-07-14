@@ -7,9 +7,9 @@ import java.sql.*;
  */
 public class Database
 {
-    private static Connection conexion;  //Objeto que establece la conexion
-    private static Statement sentenciaSQL; //Objeto que almacena la sentencia que ejecuta la consulta
-    private static ResultSet resultSet; //Objeto que guarda los resultados de la consulta
+    private Connection conexion;  //Objeto que establece la conexion
+    private Statement sentenciaSQL; //Objeto que almacena la sentencia que ejecuta la consulta
+    private ResultSet resultSet; //Objeto que guarda los resultados de la consulta
 
     public static final String dataBaseName = "bfkbonwrvl7atwiehbto";
     private static final String url_db = "jdbc:mysql://usk3refbtwbe3fdm:ivccxIR52fMqzS8F6gsm@bfkbonwrvl7atwiehbto-mysql.services.clever-cloud.com:3306/bfkbonwrvl7atwiehbto?useSSL=false";
@@ -20,7 +20,7 @@ public class Database
      * Inicia la conexion con la base de datos.
      * @author Keller Thompson
      */
-    public static void conectar()
+    public void conectar()
     {
         try
         {
@@ -40,7 +40,7 @@ public class Database
      * Termina la conexion con la base de datos.
      * @author Keller Thompson
      */
-    public static void cerrarConexion()
+    public void cerrarConexion()
     {
         try
         {
@@ -64,7 +64,7 @@ public class Database
      * Ejemplo Database.insertarEnTabla( "User", "username, password", psUsername + "', '" + psPassword);
      * @author Keller Thompson
      */
-    public static void insertarEnTabla(String tabla, String columnas, String valores)
+    public void insertarEnTabla(String tabla, String columnas, String valores)
     {
         try
         {
@@ -76,7 +76,7 @@ public class Database
         }
     }
 
-    public static void executeInsert(String sentencia)
+    public void executeInsert(String sentencia)
     {
         try
         {
@@ -97,7 +97,7 @@ public class Database
      * @param psID : primarykey del registro a actualizar
      * @author Keller Thompson
      */
-    public static void actualizarCampo (String psTablas, String psColumnas, String psValores, String primaryKey, String psID)
+    public void actualizarCampo (String psTablas, String psColumnas, String psValores, String primaryKey, String psID)
     {
         try
         {
@@ -117,7 +117,7 @@ public class Database
      * @param idValue : valor del primarykey asignado al registro que desea borrar
      * @author Keller Thompson
      */
-    public static void borrarRegistro (String tabla, String primaryKey, String idValue)
+    public void borrarRegistro (String tabla, String primaryKey, String idValue)
     {
         try
         {
@@ -137,7 +137,7 @@ public class Database
      * @author Keller Thompson
      * @return Verdadero si lo encuentra, o un Falso en caso contrario.
      */
-    public static boolean existeEnColumna(String table, String columna, String subcad)
+    public boolean existeEnColumna(String table, String columna, String subcad)
     {
         try
         {
@@ -163,7 +163,7 @@ public class Database
      * @return El resultado de la consulta en un String
      * @author Keller Thompson
      */
-    public static String getStringAt(String celda, String table, String primaryKey, String idValue)
+    public String getStringAt(String celda, String table, String primaryKey, String idValue)
     {
         try
         {
@@ -177,7 +177,7 @@ public class Database
             return null;
         }
     }
-    public static int getIntegerAt(String celda, String table, String primaryKey, String idValue)
+    public int getIntegerAt(String celda, String table, String primaryKey, String idValue)
     {
         try
         {
@@ -198,7 +198,7 @@ public class Database
      * @param psSentencia : La consulta a realizar
      * @author Keller Thompson
      */
-    public static void sentenciaQuery(String psSentencia)
+    public void sentenciaQuery(String psSentencia)
     {
         try
         {
@@ -216,7 +216,7 @@ public class Database
      * @return Una matriz String
      * @author Keller Thompson
      */
-    public static String[][] obtenerDatosTabla()
+    public String[][] obtenerDatosTabla()
     {
         String [][] tabla = new String[1][1];
 
