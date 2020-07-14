@@ -16,4 +16,11 @@ public class UserService
         User user = UserControl.userAunthentication(username, password);
         return (user.idUser + "," + user.examen);
     }
+
+    @POST
+    @Path("{username}/{password}")
+    public void portRegisterUser(@PathParam("username") String username, @PathParam("password") String password)
+    {
+        UserControl.registerUser(username, password);
+    }
 }

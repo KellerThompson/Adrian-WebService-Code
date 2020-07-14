@@ -25,7 +25,9 @@ public class UserControl
         )
         {
             Database.conectar();
-            Database.sentenciaQuery("SELECT * FROM "+ dataBaseName +"."+userTable+" where "+usernameColumn+" = '" + user.username +"';");
+            Database.sentenciaQuery(
+                    "SELECT * FROM "+ dataBaseName +"."+userTable+" " +
+                            "where "+usernameColumn+" = '" + user.username +"';");
             String[][] stringUser = Database.obtenerDatosTabla();
             Database.cerrarConexion();
 
@@ -49,6 +51,19 @@ public class UserControl
     {
         Database.conectar();
         Database.actualizarCampo(userTable, examenColumn, examState, userPrimaryKey, idUser);
+        Database.cerrarConexion();
+    }
+
+    public static void registerUser(String username, String password)
+    {
+        Database.conectar();
+        if(!Database.existeEnColumna(userTable, usernameColumn, username))
+        {
+            Database.executeInsert(
+                    "insert into "+dataBaseName+"."+userTable+" " +
+                            "("+usernameColumn+", "+passwordColumn+", "+examenColumn+") " +
+                            "values ('"+username+"', '"+password+"', 0);");
+        }
         Database.cerrarConexion();
     }
 }
