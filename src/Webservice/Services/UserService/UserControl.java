@@ -14,7 +14,7 @@ public class UserControl
     private static final String passwordColumn = "password";
     private static final String examenColumn = "examen";
 
-    public static User userAunthentication(String username, String password)
+    public static String userAunthentication(String username, String password)
     {
         User user = new User(username, password);
         if ((!username.equals("") && !password.equals("")) &&
@@ -40,7 +40,7 @@ public class UserControl
                 user = new User(username, password);
             }
         }
-        return user;
+        return (user.idUser + "," + user.examen);
     }
 
     public static void setExamenState(String idUser, String examState)

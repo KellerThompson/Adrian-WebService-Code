@@ -13,8 +13,7 @@ public class UserService
     @Produces(MediaType.TEXT_PLAIN)
     public String UserAunthentication(@PathParam("username") String username, @PathParam("password") String password)
     {
-        User user = UserControl.userAunthentication(username, password);
-        return (user.idUser + "," + user.examen);
+        return UserControl.userAunthentication(username, password);
     }
 
     @POST

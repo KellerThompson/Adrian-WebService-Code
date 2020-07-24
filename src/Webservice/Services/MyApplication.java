@@ -1,5 +1,6 @@
 package Webservice.Services;
 
+import Webservice.Services.ExamenService.ExamenService;
 import Webservice.Services.ResultService.ResultService;
 import Webservice.Services.UserService.UserService;
 
@@ -17,6 +18,7 @@ public class MyApplication extends Application
         HashSet hashSet = new HashSet<Class<?>>();
         hashSet.add(UserService.class);
         hashSet.add(ResultService.class);
+        hashSet.add(ExamenService.class);
         return hashSet;
     }
 }

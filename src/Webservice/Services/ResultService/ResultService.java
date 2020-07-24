@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 @Path("/Result")
 public class ResultService
 {
-    @GET
+    @POST
     @Path("{idUser}/{idExamen}/{materia}/{resultados}")
     public void setResult(@PathParam("idUser") int idUser,
                           @PathParam("idExamen") int idExamen,
