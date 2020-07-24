@@ -11,16 +11,16 @@ public class UserService
     @GET
     @Path("{username}/{password}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getUserAunthentication(@PathParam("username") String username, @PathParam("password") String password)
+    public String UserAunthentication(@PathParam("username") String username, @PathParam("password") String password)
     {
         User user = UserControl.userAunthentication(username, password);
         return (user.idUser + "," + user.examen);
     }
 
     @POST
-    @Path("{username}/{password}")
-    public void portRegisterUser(@PathParam("username") String username, @PathParam("password") String password)
+    @Path("Exam/{idUser}/{examState}")
+    public void UserFinishExam(@PathParam("idUser") String idUser, @PathParam("examState") String examState)
     {
-        UserControl.registerUser(username, password);
+        UserControl.setExamenState(idUser, examState);
     }
 }

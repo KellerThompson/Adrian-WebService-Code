@@ -1,11 +1,15 @@
 package Webservice.Core.User;
 
+import java.sql.Date;
+
 public class User
 {
+    public int idUser;
+    public int idPersona;
     public String username;
     public String password;
-    public int idUser;
     public int examen;
+    public Date fechaRegistro;
 
     public User()
     {
@@ -14,9 +18,10 @@ public class User
 
     public User(String username, String password)
     {
+        this.idUser = -1;
+        this.idPersona = -1;
         this.username = username;
         this.password = password;
-        this.idUser = -1;
         this.examen = -1;
     }
 

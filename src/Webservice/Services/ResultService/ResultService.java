@@ -5,12 +5,13 @@ import javax.ws.rs.*;
 @Path("/Result")
 public class ResultService
 {
-    @POST
-    @Path("{idUser}/{materia}/{resultados}")
+    @GET
+    @Path("{idUser}/{idExamen}/{materia}/{resultados}")
     public void setResult(@PathParam("idUser") int idUser,
-                            @PathParam("materia") String materia,
-                            @PathParam("resultados") String resultados)
+                          @PathParam("idExamen") int idExamen,
+                          @PathParam("materia") String materia,
+                          @PathParam("resultados") String resultados)
     {
-        ResultControl.registerResult(idUser, materia, resultados);
+        ResultControl.registerResult(idUser, idExamen, materia, resultados);
     }
 }
