@@ -1,4 +1,4 @@
-package Webservice.Services.ExamenService;
+package Webservice.Services.Examen;
 
 import Webservice.DataBase.Database;
 

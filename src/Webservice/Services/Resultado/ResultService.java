@@ -1,4 +1,4 @@
-package Webservice.Services.ResultService;
+package Webservice.Services.Resultado;
 
 import javax.ws.rs.*;
 

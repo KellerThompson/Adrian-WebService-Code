@@ -1,6 +1,4 @@
-package Webservice.Services.UserService;
-
-import Webservice.Core.User.User;
+package Webservice.Services.Usuaio;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

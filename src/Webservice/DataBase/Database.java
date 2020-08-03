@@ -154,6 +154,27 @@ public class Database
             return false;
         }
     }
+
+    public boolean existeEnColumna(String query)
+    {
+        try
+        {
+            resultSet = sentenciaSQL.executeQuery(query);
+            resultSet.beforeFirst();
+            if(resultSet.next())
+                return true;
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     /**
      * Metodo que obtiene un registro especifico.
      * @param celda : nombre de la columna del dato que se desea

@@ -1,8 +1,8 @@
-package Webservice.Services.UserService;
+package Webservice.Services.Usuaio;
 
 import Webservice.DataBase.Database;
 import Webservice.Utileria.UtilK;
-import Webservice.Core.User.User;
+import Webservice.Model.User.User;
 
 import static Webservice.DataBase.Database.dataBaseName;
 

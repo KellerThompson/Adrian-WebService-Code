@@ -1,4 +1,4 @@
-package Webservice.Core.User;
+package Webservice.Model.User;
 
 import java.sql.Date;
 

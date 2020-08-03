@@ -1,8 +1,9 @@
 package Webservice.Services;
 
-import Webservice.Services.ExamenService.ExamenService;
-import Webservice.Services.ResultService.ResultService;
-import Webservice.Services.UserService.UserService;
+import Webservice.Services.Compra.CompraService;
+import Webservice.Services.Examen.ExamenService;
+import Webservice.Services.Resultado.ResultService;
+import Webservice.Services.Usuaio.UserService;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -19,6 +20,7 @@ public class MyApplication extends Application
         hashSet.add(UserService.class);
         hashSet.add(ResultService.class);
         hashSet.add(ExamenService.class);
+        hashSet.add(CompraService.class);
         return hashSet;
     }
 }

@@ -1,4 +1,4 @@
-package Webservice.Services.ExamenService;
+package Webservice.Services.Examen;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
