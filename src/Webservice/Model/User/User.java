@@ -8,7 +8,6 @@ public class User
     public int idPersona;
     public String username;
     public String password;
-    public int examen;
     public Date fechaRegistro;
 
     public User()
@@ -22,20 +21,11 @@ public class User
         this.idPersona = -1;
         this.username = username;
         this.password = password;
-        this.examen = -1;
     }
 
     public boolean isValid()
     {
         if(idUser > 0)
-            return true;
-        else
-            return false;
-    }
-
-    public boolean examen()
-    {
-        if(examen > 0)
             return true;
         else
             return false;
@@ -47,7 +37,6 @@ public class User
                 "idUser='" + idUser + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", examen='" + examen + '\'' +
                 '}';
     }
 }

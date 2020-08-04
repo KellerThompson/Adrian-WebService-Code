@@ -1,6 +1,6 @@
 package Webservice.Services;
 
-import Webservice.Services.Compra.CompraService;
+import Webservice.Services.Asignacion.AsignacionService;
 import Webservice.Services.Examen.ExamenService;
 import Webservice.Services.Resultado.ResultService;
 import Webservice.Services.Usuaio.UserService;
@@ -20,7 +20,7 @@ public class MyApplication extends Application
         hashSet.add(UserService.class);
         hashSet.add(ResultService.class);
         hashSet.add(ExamenService.class);
-        hashSet.add(CompraService.class);
+        hashSet.add(AsignacionService.class);
         return hashSet;
     }
 }

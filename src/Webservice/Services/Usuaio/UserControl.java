@@ -4,17 +4,9 @@ import Webservice.DataBase.Database;
 import Webservice.Utileria.UtilK;
 import Webservice.Model.User.User;
 
-import static Webservice.DataBase.Database.dataBaseName;
-
 public class UserControl
 {
-    private static final String userTable = "User";
-    private static final String userPrimaryKey = "idUser";
-    private static final String usernameColumn = "username";
-    private static final String passwordColumn = "password";
-    private static final String examenColumn = "examen";
-
-    public static String userAunthentication(String username, String password)
+    public static int userAunthentication(String username, String password)
     {
         User user = new User(username, password);
         if ((!username.equals("") && !password.equals("")) &&
@@ -23,16 +15,15 @@ public class UserControl
             Database db = new Database();
             db.conectar();
             db.sentenciaQuery(
-                    "SELECT * FROM "+ dataBaseName +"."+userTable+" " +
-                            "where "+usernameColumn+" = '" + username +"';");
+                    "select User.idUser, User.password from bfkbonwrvl7atwiehbto.User " +
+                    "where User.username = '"+username+"';");
             String[][] stringUser = db.obtenerDatosTabla();
             db.cerrarConexion();
             try
             {
-                if(password.equals(stringUser[0][3]))
+                if(password.equals(stringUser[0][1]))
                 {
                     user.idUser = Integer.parseInt(stringUser[0][0]);
-                    user.examen = Integer.parseInt(stringUser[0][4]);
                 }
             }
             catch (Exception ex)
@@ -40,14 +31,6 @@ public class UserControl
                 user = new User(username, password);
             }
         }
-        return (user.idUser + "," + user.examen);
-    }
-
-    public static void setExamenState(String idUser, String examState)
-    {
-        Database db = new Database();
-        db.conectar();
-        db.actualizarCampo(userTable, examenColumn, examState, userPrimaryKey, idUser);
-        db.cerrarConexion();
+        return (user.idUser);
     }
 }
