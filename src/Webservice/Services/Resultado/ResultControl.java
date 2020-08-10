@@ -10,12 +10,13 @@ public class ResultControl
     private static final String materiaPrimaryKey = "idMaterias";
     private static final String materiaColumn = "Materia";
 
-    public static void registerResult(int idUser, int idExamen, String materia, String resultadosString)
+    public static void registerResult(int idUser, String tituloExamen, String materia, String resultadosString)
     {
         String[] resultados = resultadosString.split(",");
 
         Database db = new Database();
         db.conectar();
+        int idExamen = db.getIntegerAt("idExamen", "Examen", "titulo", tituloExamen);
         int idMateria = db.getIntegerAt(materiaPrimaryKey, materiaTable, materiaColumn, materia);
         for(int i = 0; i < resultados.length; i++)
         {

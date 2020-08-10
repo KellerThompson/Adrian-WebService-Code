@@ -10,10 +10,10 @@ import javax.ws.rs.core.MediaType;
 public class AsignacionService
 {
     @GET
-    @Path("{idUser}/{TituloExamen}")
+    @Path("{idUser}/{tituloExamen}")
     @Produces(MediaType.TEXT_PLAIN)
-    public int getIdCompra(@PathParam("idUser") int idUser, @PathParam("TituloExamen") String TituloExamen)
+    public int getIdCompra(@PathParam("idUser") int idUser, @PathParam("tituloExamen") String tituloExamen)
     {
-        return AsignacionControl.getEstado(idUser, TituloExamen);
+        return AsignacionControl.getEstado(idUser, tituloExamen);
     }
 }

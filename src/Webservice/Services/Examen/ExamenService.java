@@ -7,17 +7,17 @@ import javax.ws.rs.core.MediaType;
 public class ExamenService
 {
     @GET
-    @Path("{TituloExamen}")
+    @Path("{tituloExamen}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getExamenLink(@PathParam("TituloExamen") String TituloExamen)
+    public String getExamenLink(@PathParam("tituloExamen") String tituloExamen)
     {
-        return ExamenControl.getLink(TituloExamen);
+        return ExamenControl.getLink(tituloExamen);
     }
 
     @POST
-    @Path("{idUser}/{idExamen}")
-    public void setExamenFinish(@PathParam("idUser") int idUser, @PathParam("idExamen") int idExamen)
+    @Path("{idUser}/{tituloExamen}")
+    public void setExamenFinish(@PathParam("idUser") int idUser, @PathParam("tituloExamen") String tituloExamen)
     {
-        ExamenControl.setExamenFinish(idUser, idExamen);
+        ExamenControl.setExamenFinish(idUser, tituloExamen);
     }
 }
