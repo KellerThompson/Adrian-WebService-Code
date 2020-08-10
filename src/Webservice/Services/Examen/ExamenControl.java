@@ -4,14 +4,14 @@ import Webservice.DataBase.Database;
 
 public class ExamenControl
 {
-    public static String getLink(int idExamen)
+    public static String getLink(String TituloExamen)
     {
         String respuesta;
         try
         {
             Database db = new Database();
             db.conectar();
-            db.sentenciaQuery("SELECT Examen.link FROM bfkbonwrvl7atwiehbto.Examen where Examen.idExamen = "+idExamen+";");
+            db.sentenciaQuery("SELECT Examen.link FROM bfkbonwrvl7atwiehbto.Examen where Examen.titulo = "+TituloExamen+";");
             String[][] stringExamen = db.obtenerDatosTabla();
             db.cerrarConexion();
             respuesta = stringExamen[0][0];

@@ -7,11 +7,11 @@ import javax.ws.rs.core.MediaType;
 public class ExamenService
 {
     @GET
-    @Path("{idExamen}")
+    @Path("{TituloExamen}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getExamenLink(@PathParam("idExamen") int idExamen)
+    public String getExamenLink(@PathParam("TituloExamen") String TituloExamen)
     {
-        return ExamenControl.getLink(idExamen);
+        return ExamenControl.getLink(TituloExamen);
     }
 
     @POST

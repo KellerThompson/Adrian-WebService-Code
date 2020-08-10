@@ -4,16 +4,17 @@ import Webservice.DataBase.Database;
 
 public class AsignacionControl
 {
-    public static int getEstado(int idUser, int idExamen)
+    public static int getEstado(int idUser, String TituloExamen)
     {
         int respuesta;
         try
         {
-            String query =
-                    "SELECT estado FROM bfkbonwrvl7atwiehbto.Asignacion " +
-                    "where Asignacion.idUser = "+idUser+" and Asignacion.idExamen = "+idExamen+";";
             Database db = new Database();
             db.conectar();
+            int idExamen = db.getIntegerAt("idExamen", "Examen", "titulo", TituloExamen);
+            String query =
+                    "SELECT estado FROM bfkbonwrvl7atwiehbto.Asignacion " +
+                            "where Asignacion.idUser = "+idUser+" and Asignacion.idExamen = "+idExamen+";";
             db.sentenciaQuery(query);
             String[][] stringExamen = db.obtenerDatosTabla();
             db.cerrarConexion();
