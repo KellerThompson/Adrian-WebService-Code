@@ -2,35 +2,42 @@ package Webservice.Services.Usuaio;
 
 import Webservice.DataBase.Database;
 import Webservice.Utileria.UtilK;
-import Webservice.Model.User.User;
 
-public class UserControl
+public final class UserControl
 {
-    public static int userAunthentication(String username, String password)
+    public static String Aunthentication(String username, String password, String examen)
     {
-        User user = new User(username, password);
-        if ((!username.equals("") && !password.equals("")) &&
-                (UtilK.validString(username) && UtilK.validString(password)))
+        String response = "";
+
+        if((UtilK.validString(username) && UtilK.validString(password)))
         {
             Database db = new Database();
             db.conectar();
             db.sentenciaQuery(
-                    "select User.idUser, User.password from bfkbonwrvl7atwiehbto.User " +
-                    "where User.username = '"+username+"';");
-            String[][] stringUser = db.obtenerDatosTabla();
+                    "select User.idUser, User.username, User.password, Asignacion.estado, Examen.link from User " +
+                    "inner join Asignacion on User.idUser = Asignacion.idUser " +
+                    "inner join Examen on Asignacion.idExamen = Examen.idExamen " +
+                    "where User.username = '"+username+"' " +
+                    "and User.password = '"+password+"' " +
+                    "and Examen.titulo = '"+examen+"';");
             db.cerrarConexion();
+            String[][] resultSet = db.obtenerDatosTabla();
             try
             {
-                if(password.equals(stringUser[0][1]))
+                if(username.equals(resultSet[0][1]) && password.equals(resultSet[0][2]) && resultSet[0][3].equals("0"))
                 {
-                    user.idUser = Integer.parseInt(stringUser[0][0]);
+                    response = resultSet[0][0] + "," + resultSet[0][4];
+                }
+                else
+                {
+                    response = "-1,no_link";
                 }
             }
             catch (Exception ex)
             {
-                user = new User(username, password);
+                response = "-1,no_link";
             }
         }
-        return (user.idUser);
+        return response;
     }
 }
