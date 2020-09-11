@@ -10,32 +10,55 @@ public class ResultControl
     private static final String materiaPrimaryKey = "idMaterias";
     private static final String materiaColumn = "Materia";
 
-    public static void registerResult(int idUser, String tituloExamen, String materia, String resultadosString)
+    private static final String[] materias = new String[]{
+            "habilidad_verbal", "espanol",
+            "habilidad_matematica", "matematicas",
+            "fisica", "quimica", "biologia",
+            "historia", "geografia",
+            "formacion_civica_etica"
+    };
+
+    public static void registerResult(int idUser, String tituloExamen,
+                                      String habilidad_verbal, String espanol,
+                                      String habilidad_matematica, String matematicas,
+                                      String fisica, String quimica, String biologia,
+                                      String historia, String geografia, String formacion_civica_etica)
     {
-        String[] resultados = resultadosString.split(",");
+        String[] resultados = new String[]{
+                habilidad_verbal, espanol,
+                habilidad_matematica, matematicas,
+                fisica, quimica, biologia,
+                historia, geografia,
+                formacion_civica_etica
+        };
 
         Database db = new Database();
         db.conectar();
         int idExamen = db.getIntegerAt("idExamen", "Examen", "titulo", tituloExamen);
-        int idMateria = db.getIntegerAt(materiaPrimaryKey, materiaTable, materiaColumn, materia);
-        for(int i = 0; i < resultados.length; i++)
+        for(int i = 0; i < materias.length; i++)
         {
-            db.executeInsert(createSentencia(idUser + "," + idExamen + "," + idMateria + "," + (i + 1) + "," + resultados[i]));
+            int idMateria = db.getIntegerAt(materiaPrimaryKey, materiaTable, materiaColumn, materias[i]);
+            String[] result = resultados[i].split(",");
+            for(int e = 0; e < result.length; e++)
+            {
+                db.executeInsert(createSentencia(idUser + "," + idExamen + "," + idMateria + "," + (e + 1) + "," + result[e]));
+            }
         }
+
+        String update =
+                "update bfkbonwrvl7atwiehbto.Asignacion set estado = 1 " +
+                        "where idUser = "+idUser+" and idExamen = " +
+                        "(select Examen.idExamen from bfkbonwrvl7atwiehbto.Examen " +
+                        "where Examen.titulo = '"+tituloExamen+"');";
+        db.executeInsert(update);
+
         db.cerrarConexion();
     }
 
-    private static final String ResultadosTable = "Resultados";
-    private static final String idUserColumn = "idUser";
-    private static final String idExamenColumn = "idExamen";
-    private static final String idMateriaColumn = "idMateria";
-    private static final String numPreguntaColumn = "numPregunta";
-    private static final String resultadoColumn = "resultado";
-
     private static String createSentencia(String values)
     {
-        return ("INSERT INTO " + dataBaseName + "." + ResultadosTable +
-                " (" + idUserColumn + "," + idExamenColumn + "," + idMateriaColumn + "," + numPreguntaColumn + "," + resultadoColumn + ") " +
+        return ("INSERT INTO " + dataBaseName + ".Resultados" +
+                " (idUser, idExamen,idMateria,numPregunta,resultado) " +
                 "VALUES (" + values + ")");
     }
 }
