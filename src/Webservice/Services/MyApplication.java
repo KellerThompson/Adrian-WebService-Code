@@ -17,6 +17,7 @@ public class MyApplication extends Application
         HashSet hashSet = new HashSet<Class<?>>();
         hashSet.add(UserService.class);
         hashSet.add(ResultService.class);
+        hashSet.add(Inicio.class);
         return hashSet;
     }
 }

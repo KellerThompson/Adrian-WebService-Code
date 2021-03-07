@@ -7,13 +7,10 @@ import javax.ws.rs.core.MediaType;
 public class UserService
 {
     @GET
-    @Path("{username}/{password}/{Examen}")
+    @Path("{username}/{password}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String UserAunthentication(
-            @PathParam("username") String username,
-            @PathParam("password") String password,
-            @PathParam("Examen") String Examen)
+    public int UserAunthentication(@PathParam("username") String username, @PathParam("password") String password)
     {
-        return UserControl.Aunthentication(username, password, Examen);
+        return UserControl.Aunthentication(username, password);
     }
 }

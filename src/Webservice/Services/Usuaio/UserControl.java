@@ -1,39 +1,57 @@
 package Webservice.Services.Usuaio;
 
-import Webservice.DataBase.Database;
+import Webservice.DataBase.MysqlDriver;
 import Webservice.Utileria.UtilK;
+
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public final class UserControl
 {
-    public static String Aunthentication(String username, String password, String examen)
+    public static int Aunthentication(String username, String password)
     {
-        String response = "-1,no_link";
+        int response = UserState.TO_VALIDATE;
+        MysqlDriver mysql = new MysqlDriver();
 
-        if((UtilK.validString(username) && UtilK.validString(password)))
+        try
         {
-            Database db = new Database();
-            db.conectar();
-            db.sentenciaQuery(
-                    "select User.idUser, Asignacion.estado, Examen.link from User " +
-                    "inner join Asignacion on User.idUser = Asignacion.idUser " +
-                    "inner join Examen on Asignacion.idExamen = Examen.idExamen " +
-                    "where User.username = '" + username + "' " +
-                    "and User.password = '" + password + "' " +
-                    "and Examen.titulo = '" + examen + "';");
-            String[][] resultSet = db.obtenerDatosTabla();
-            db.cerrarConexion();
-            try
+            if((UtilK.validString(username) && UtilK.validString(password)))
             {
-                if(resultSet[0][1].equals("0"))
+                mysql.conectar();
+                String query = "select username, password from User where username = ?;";
+                PreparedStatement preparedStatement = mysql.getConection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setString(1, username);
+                mysql.setResultSet(preparedStatement.executeQuery());
+
+                if(mysql.getResultSet().next())
                 {
-                    response = resultSet[0][0] + "," + resultSet[0][2];
+                    if(mysql.getResultSet().getString(2).equals(password))
+                    {
+                        response = UserState.VALID;
+                    }
+                    else
+                    {
+                        response = UserState.PASSWORD_INVALID;
+                    }
+                }
+                else
+                {
+                    response = UserState.USERNAME_INVALID;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                //System.out.println("UserControl: " + ex);
+                response = UserState.USERNAME_OR_PASSWORD_WRONG_FORMAT;
             }
         }
-        return response;
+        catch (Exception ex)
+        {
+            response = UserState.ERROR;
+        }
+        finally
+        {
+            mysql.cerrarConexion();
+            return response;
+        }
     }
 }
