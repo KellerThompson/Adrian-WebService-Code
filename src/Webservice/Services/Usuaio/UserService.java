@@ -9,7 +9,7 @@ public class UserService
     @GET
     @Path("{username}/{password}")
     @Produces(MediaType.TEXT_PLAIN)
-    public int UserAunthentication(@PathParam("username") String username, @PathParam("password") String password)
+    public String UserAunthentication(@PathParam("username") String username, @PathParam("password") String password)
     {
         return UserControl.Aunthentication(username, password);
     }
